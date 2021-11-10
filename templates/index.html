@@ -1,0 +1,8 @@
+<a href="/add">Add a new transaction</a>
+
+<h3>Past transactions</h3>
+
+<ul>
+    <!-- We receive the transaction that was added when the page is loaded. -->
+    <li>{{ transaction.date }} - {{ transaction.venue }}, £{{ transaction.cost }}, {{ transaction.payer }}, {{ transaction.attendees }}
+</ul>
