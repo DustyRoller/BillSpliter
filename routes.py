@@ -1,11 +1,13 @@
 from flask import render_template, request
-from models import transaction
+from models import TransactionsModel, create_transaction
 from app import app
 import sys
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    transactions = TransactionsModel.query.all()
+
+    return render_template("index.html", transactions=transactions)
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
@@ -36,6 +38,9 @@ def add():
     if transaction_attendees == "":
         return render_template("add.html", action="Add", message="Invalid attendees")
 
-    t = transaction(transaction_date, transaction_venue, transaction_cost, transaction_payer, transaction_attendees)
+    create_transaction(transaction_date, transaction_venue, transaction_cost,
+                       transaction_payer, transaction_attendees)
 
-    return render_template("index.html", transaction=t)
+    transactions = TransactionsModel.query.all()
+
+    return render_template("index.html", transactions=transactions)
