@@ -20,16 +20,6 @@ class TransactionsModel(db.Model):
     def __repr__(self):
         return f"<Transaction {self.date} - {self.venue} - {self.cost}>"
 
-def create_transaction(date, venue, cost, payer, attendees):
-    # Create a transaction with the provided input.
-    transaction = TransactionsModel(date, venue, cost, payer, attendees)
-
-    # Add this transaction to the database.
-    db.session.add(transaction)
-
-    # Save all pending changes to the database
-    db.session.commit()
-
 if __name__ == "__main__":
     # Run this file directly to create the database tables.
     print ("Creating database tables...")

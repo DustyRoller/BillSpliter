@@ -1,43 +1,13 @@
-<html>
-<body>
+{% from "util.html" import render_field %}
+<form id="AddTransactionForm" class="form form-register" method="POST" action="" role="form">
+  {{ add_transaction_form.hidden_tag() }}
+  {{ add_transaction_form.date.label() }}
+  <!-- Note that the date type will return date in the format YYYY-MM-DD. -->
+  {{ add_transaction_form.date(type="date") }}<br><br>
+  {{ render_field(add_transaction_form.venue, placeholder="Venue of transaction") }}<br>
+  {{ render_field(add_transaction_form.cost, placeholder="Cost of transaction") }}<br>
+  {{ render_field(add_transaction_form.payer, placeholder="Who paid") }}<br>
+  {{ render_field(add_transaction_form.attendees, placeholder="List of attendees") }}<br>
 
-<h3>{{ action }} transaction</h3>
-
-{% if message %}
-<p>{{ message }}</p>
-{% endif %}
-
-{% if transaction %}
-
-<p>Transaction at {{transaction.venue}} on {{transaction.date}} added.</p>
-<p><a href="/">Back to transcation list</a></p>
-
-{% endif %}
-
-
-<!-- The form action and method correspond to a Flask route -->
-<form action="/add" method="POST">
-<div>
-<label for="date_id">Date</label>
-<input id="date_id" name="date_field" type="date">
-
-<label for="venue_id">Venue</label>
-<input id="venue_id" name="venue_field" type="text" />
-
-<label for="cost_id">Total cost</label>
-<input id="cost_id" name="cost_field" type="text" />
-
-<label for="payer_id">Payer</label>
-<input id="payer_id" name="payer_field" type="text" />
-
-<label for="attendees_id">Attendees</label>
-<input id="attendees_id" name="attendees_field" type="text" />
-</div>
-
-<!-- We need a submit button to submit a form! -->
-<input type="submit" value="Add" style="margin-top:30px"/>
-
+  <p><input class="btn btn-default btn-submit" type="submit" value="Add"></p>
 </form>
-
-</body>
-</html>
