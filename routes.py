@@ -19,9 +19,8 @@ def add():
 
         if (form.validate()):
             # Read data from the form and store in the database.
-            transaction = TransactionsModel(request.form["date"],
-                request.form["venue"], request.form["cost"],
-                request.form["payer"], request.form["attendees"])
+            transaction = TransactionsModel(form.date.data, form.venue.data,
+                form.cost.data, form.payer.data, form.attendees.data)
 
             db.session.add(transaction)
 

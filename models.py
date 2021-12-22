@@ -4,7 +4,7 @@ class TransactionsModel(db.Model):
     __tablename__ = "Transactions"
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String)
+    date = db.Column(db.Date)
     venue = db.Column(db.String)
     cost = db.Column(db.Float)
     payer = db.Column(db.String)
