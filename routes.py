@@ -33,3 +33,8 @@ def add():
             return render_template("index.html", transactions=transactions)
         else:
             return render_template("add.html", add_transaction_form=form)
+
+@app.route("/venue", methods=["GET", "POST"])
+def venue():
+    if request.method == "GET":
+        return render_template("venue.html", venue="v")
