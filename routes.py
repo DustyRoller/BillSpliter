@@ -3,11 +3,13 @@ from forms import AddTransactionForm
 from models import TransactionsModel
 from app import app, db
 
+
 @app.route("/")
 def index():
     transactions = TransactionsModel.query.all()
 
     return render_template("index.html", transactions=transactions)
+
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
@@ -20,7 +22,8 @@ def add():
         if (form.validate()):
             # Read data from the form and store in the database.
             transaction = TransactionsModel(form.date.data, form.venue.data,
-                form.cost.data, form.payer.data, form.attendees.data)
+                                            form.cost.data, form.payer.data,
+                                            form.attendees.data)
 
             db.session.add(transaction)
 
